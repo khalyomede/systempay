@@ -2,6 +2,8 @@
 
 Systempay toolbox for PHP applications.
 
+[![Build Status](https://travis-ci.com/khalyomede/systempay.svg?branch=master)](https://travis-ci.com/khalyomede/systempay)
+
 ## Summary
 
 - [About](#about)
