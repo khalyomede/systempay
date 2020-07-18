@@ -2,7 +2,7 @@
 
 Systempay toolbox for PHP applications.
 
-[![Build Status](https://travis-ci.com/khalyomede/systempay.svg?branch=master)](https://travis-ci.com/khalyomede/systempay) [![Maintainability](https://api.codeclimate.com/v1/badges/a4ed574db718472ee6d0/maintainability)](https://codeclimate.com/github/khalyomede/systempay/maintainability)
+![Packagist Version](https://img.shields.io/packagist/v/khalyomede/systempay) [![Build Status](https://travis-ci.com/khalyomede/systempay.svg?branch=master)](https://travis-ci.com/khalyomede/systempay) [![Maintainability](https://api.codeclimate.com/v1/badges/a4ed574db718472ee6d0/maintainability)](https://codeclimate.com/github/khalyomede/systempay/maintainability) ![Packagist License](https://img.shields.io/packagist/l/khalyomede/systempay) ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/khalyomede/systempay)
 
 ## Summary
 
