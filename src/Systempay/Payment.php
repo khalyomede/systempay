@@ -271,7 +271,7 @@ class Payment
         $hashAlgorithm = $this->getHashAlgorithm();
 
         if ($hashAlgorithm === HashAlgorithm::SHA256) {
-            return base64_encode(hash_hmac($hashAlgorithm, $fieldsString, $this->getKey()));
+            return base64_encode(hash_hmac($hashAlgorithm, $fieldsString, $this->getKey(), true));
         } elseif ($hashAlgorithm === HashAlgorithm::SHA1) {
             return sha1($fieldsString);
         } else {
