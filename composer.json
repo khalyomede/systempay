@@ -1,0 +1,35 @@
+{
+  "name": "khalyomede/systempay",
+  "description": "Systempay toolbox for PHP applications.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Khalyomede",
+      "email": "khalyomede@gmail.com"
+    }
+  ],
+  "keywords": [
+    "systempay",
+    "banque populaire",
+    "caisse d'épargne",
+    "paiement en ligne",
+    "online payment"
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=7.1.0",
+    "payum/iso4217": "1.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Khalyomede\\Systempay\\": "src/Systempay"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "7.*"
+  },
+  "scripts": {
+    "test": "phpunit --whitelist src --coverage-text test"
+  }
+}

@@ -1,0 +1,8 @@
+version: "3"
+services:
+  php:
+    build: ./docker/php-7-1
+    tty: true
+    volumes:
+      - .:/home/www-data
+    working_dir: /home/www-data
