@@ -69,8 +69,8 @@ $url = $payment->getFormUrl();
 ?>
 
 <form method="POST" action="<?= $url ?>">
-	<?= $fields ?>
-	<button type="submit">Payer</button>
+  <?= $fields ?>
+  <button type="submit">Payer</button>
 </form>
 ```
 
