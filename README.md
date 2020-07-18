@@ -445,9 +445,9 @@ composer run test
 
 _?: Untested_
 
-|     | 7.1  | 7.2 | 7.3 | 7.4 | 8.0 |
-| --- | ---- | --- | --- | --- | --- |
-| v0  | pass | ?   | ?   | ?   | ?   |
+|     | 7.1  | 7.2  | 7.3  | 7.4  | 8.0 |
+| --- | ---- | ---- | ---- | ---- | --- |
+| v0  | pass | pass | pass | pass | ?   |
 
 You can counter check these results by following this procedure:
 
