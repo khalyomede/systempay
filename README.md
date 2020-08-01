@@ -1,6 +1,6 @@
 # khalyomede/systempay
 
-Systempay toolbox for PHP applications.
+Generates form fields for payment and process payment notifications (IPN) for Systempay.
 
 ![Packagist Version](https://img.shields.io/packagist/v/khalyomede/systempay) [![Build Status](https://travis-ci.com/khalyomede/systempay.svg?branch=master)](https://travis-ci.com/khalyomede/systempay) [![Maintainability](https://api.codeclimate.com/v1/badges/a4ed574db718472ee6d0/maintainability)](https://codeclimate.com/github/khalyomede/systempay/maintainability) ![Packagist License](https://img.shields.io/packagist/l/khalyomede/systempay) ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/khalyomede/systempay)
 
@@ -39,9 +39,10 @@ composer require khalyomede/systempay:0.*
 
 ## Examples
 
-- [1. Basic example](#1-basic-example)
+- [1. Generating form payment hidden fields](#1-generating-form-payment-hidden-fields)
+- [2. Processing a payment notification (IPN)](#2-processing-a-payment-notification-ipn)
 
-### 1. Basic example
+### 1. Generating form payment hidden fields
 
 In this example, we will only fill mandatories fields before generating the hidden HTML inputs to inject in an HTML page.
 
@@ -74,6 +75,24 @@ $url = $payment->getFormUrl();
   <?= $fields ?>
   <button type="submit">Payer</button>
 </form>
+```
+
+### 2. Processing a payment notification (IPN)
+
+In this example, we will provide with the raw POST response from the Systempay server to proces the notification.
+
+```php
+use Khalyomede\Systempay\PaymentNotification;
+use Khalyomede\Systempay\TransactionStatus;
+
+$notification = new PaymentNotification($_POST);
+$notification->setKey("the-private-key");
+
+if ($notification->hasValidSignature() && $notification->getTransactionStatus() === TransactionStatus::AUTHORISED) {
+	echo "all went good";
+} else {
+	echo "depending the transaction status, you should perform a custom action";
+}
 ```
 
 ## API
@@ -117,6 +136,45 @@ $url = $payment->getFormUrl();
   - [`PaymentConfiguration::__construct`](#paymentconfiguration::__construct)
   - [`PaymentConfiguration::isAllowed`](#paymentconfiguration::isallowed)
   - [`PaymentConfiguration::getAllowedToString`](#paymentconfiguration::getallowedtostring)
+- `Khalyomede\Systempay\PaymentNotification::class`
+  - [`PaymentNotification::construct`](#paymentnotificationconstruct)
+  - [`PaymentNotification::setKey`](#paymentnotificationsetkey)
+  - [`PaymentNotification::setHashAlgorithm`](#Paymentnotificationsethashalgorithm)
+  - getHashAlgorithm
+  - getKey
+  - getPaymentResultData
+  - hasValidSignature
+  - getEventSource
+  - getContextMode
+  - getTransactionStatus
+  - getTransactionId
+  - getTransactionDate
+  - getPaymentConfiguration
+  - getNumberOfPaymentAttempt
+  - getNumberOfDaysBeforeBanqueDeposit
+  - getPaymentAmount
+  - getAuthorizationResult
+- `Khalyomede\Systempay\AuthorizationResult::class`
+  - \_\_construct
+  - requiresToContactCardIssuer
+  - detectsSuccess
+  - detectsInvalidAcceptor
+  - detectsInvalidTransaction
+  - detectsInvalidAmount
+  - detectsInvalidCardHolderNumber
+  - detectsShopperCanceled
+  - detectsResponseError
+  - detectsExpiredCard
+  - detectsUnsufficientProvision
+  - detectsWrongPing
+  - detectsTransactionNotPermitted
+  - detectsPinAttemptsExceeded
+  - requiresToKeepTheCard
+  - requiresToNotHonor
+  - requiresToApproveAfterIdentification
+  - requiresToRepeatTransactionLater
+  - requiresToContactAcquirer
+  - isFraudulentResult
 
 ### `Payment::__construct`
 
@@ -433,6 +491,30 @@ Returns the allowed payment configuration as a string separated by a coma.
 
 ```php
 public static function getAllowedToString(): string;
+```
+
+### `PaymentNotification::construct`
+
+Constructor that takes in general the raw `$_POST` (or `$request->all()` for the Laravel users).
+
+```php
+public function __construct(array $paymentResultData)
+```
+
+### `PaymentNotification::setKey`
+
+Set the (private) key. You can find your key in your back office.
+
+```php
+public function setKey(string $key): PaymentNotification
+```
+
+### `PaymentNotification::setHashAlgorithm`
+
+Set the hash algorithm. You can pass in the value using the `HashAlgorithm` class if you do not want to use hard coded strings.
+
+```php
+public function setHashAlgorithm(string $algorithm): PaymentNotification
 ```
 
 ## Run the tests

@@ -268,15 +268,10 @@ class Payment
         $fields = $this->getFields();
         $fields["z_key"] = $this->getKey();
         $fieldsString = implode("+", $fields);
-        $hashAlgorithm = $this->getHashAlgorithm();
-
-        if ($hashAlgorithm === HashAlgorithm::SHA256) {
-            return base64_encode(hash_hmac($hashAlgorithm, $fieldsString, $this->getKey(), true));
-        } elseif ($hashAlgorithm === HashAlgorithm::SHA1) {
-            return sha1($fieldsString);
-        } else {
-            throw new RuntimeException("Hash algorithm not supported: $hashAlgorithm");
-        }
+        
+        return (new HashAlgorithm($this->getHashAlgorithm()))
+            ->setKey($this->getKey())
+            ->encode($fieldsString);
     }
 
     private function getFields(): array

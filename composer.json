@@ -1,6 +1,6 @@
 {
   "name": "khalyomede/systempay",
-  "description": "Systempay toolbox for PHP applications.",
+  "description": "Generates form fields for payment and process payment notifications (IPN) for Systempay.",
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -14,7 +14,8 @@
     "banque populaire",
     "caisse d'épargne",
     "paiement en ligne",
-    "online payment"
+    "online payment",
+    "IPN"
   ],
   "minimum-stability": "stable",
   "require": {
