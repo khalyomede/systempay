@@ -166,7 +166,7 @@ if ($notification->hasValidSignature() && $notification->getTransactionStatus() 
   - detectsResponseError
   - detectsExpiredCard
   - detectsUnsufficientProvision
-  - detectsWrongPing
+  - detectsWrongPin
   - detectsTransactionNotPermitted
   - detectsPinAttemptsExceeded
   - requiresToKeepTheCard

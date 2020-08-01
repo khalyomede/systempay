@@ -159,7 +159,7 @@ class AuthorizationResult
         ]);
     }
     
-    public function detectsWrongPing(): bool
+    public function detectsWrongPin(): bool
     {
         return in_array($this->result, [
             self::CB_WRONG_PIN,
