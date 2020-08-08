@@ -80,9 +80,7 @@ final class PaymentNotificationTest extends TestCase
     
     public function testReturnAuthResult(): void
     {
-        $authorizationResult = (new PaymentNotification($this->getPaymentResultPayload()))->getAuthorizationResult();
-
-        $this->assertTrue((new AuthorizationResult($authorizationResult))->detectsSuccess());
+        $this->assertTrue((new PaymentNotification($this->getPaymentResultPayload()))->getAuthorizationResult()->detectsSuccess());
     }
     
     public function testReturnTheDefaultSha256HashAlgorithm(): void

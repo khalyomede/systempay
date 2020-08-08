@@ -122,9 +122,9 @@ class PaymentNotification
         return ((float) $this->paymentResultData["vads_amount"]) / 100;
     }
     
-    public function getAuthorizationResult(): string
+    public function getAuthorizationResult(): AuthorizationResult
     {
-        return $this->paymentResultData["vads_auth_result"];
+        return new AuthorizationResult($this->paymentResultData["vads_auth_result"]);
     }
 
     /**

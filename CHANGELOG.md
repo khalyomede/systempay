@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] 2020-08-08
+
+### Breaking
+
+- The method `PaymentNotification::getAuthorizationResult()` will now return an instance of `AuthorizationResult` instead of a string (so you do not have to create an instance from the string anymore).
+
 ## [0.2.0] 2020-08-01
 
 ### Added
